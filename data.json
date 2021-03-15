@@ -11,14 +11,14 @@
     "data": {
       "extra": "Some extra data",
       "summary": "Hello folks",
-    }
+    },
   }, {
     "id": "210414_my-post.md",
     "title": "This is my second post",
     "body": "<p>This is some body text</p>\n",
-     "data": {
+    "data": {
       "extra": "Some extra data",
       "summary": "Hello folks",
-    }
+    },
   }]
 }
