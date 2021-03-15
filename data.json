@@ -11,7 +11,7 @@
     "data": {
       "extra": "Some extra data",
       "summary": "Hello folks"
-    },
+    }
   }, {
     "id": "210414_my-post.md",
     "title": "This is my second post",
@@ -19,6 +19,6 @@
      "data": {
       "extra": "Some extra data",
       "summary": "Hello folks"
-    },
+    }
   }]
 }
