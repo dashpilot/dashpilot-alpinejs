@@ -1,1 +1,47 @@
+    body {
+      background-color: #F8F8F8;
+    }
 
+    h1 {
+      font-size: 24px;
+      margin-top: 25px;
+    }
+
+    .post {
+      background-color: white;
+      padding: 20px;
+      margin-bottom: 10px;
+    }
+
+    .post b {
+      cursor: pointer;
+    }
+
+    .form {
+
+      margin-top: 15px;
+    }
+
+    .form-control {
+      margin-bottom: 10px;
+    }
+
+    textarea {
+      min-height: 300px;
+    }
+
+    .label {
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+
+    .rte-toolbar {
+      margin-top: 20px;
+    }
+
+    [contenteditable] {
+      outline: 0px solid transparent;
+    }
