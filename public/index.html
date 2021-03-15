@@ -47,15 +47,17 @@
                       </div>
                     </alpine-editor>
 
-                    <template x-for="mykey in Object.keys(item.data)">
-                      <div>
-                        <template x-if="mykey != 'title'">
-                          <div>
-                            <div class="label" x-text="mykey"></div>
-                            <input type="text" x-model="item.data[mykey]" class="form-control">
-                          </div>
-                        </template>
-                      </div>
+                    <template x-if="item.hasOwnProperty('data')">
+                      <template x-for="mykey in Object.keys(item.data)">
+                        <div>
+                          <template x-if="mykey != 'title'">
+                            <div>
+                              <div class="label" x-text="mykey"></div>
+                              <input type="text" x-model="item.data[mykey]" class="form-control">
+                            </div>
+                          </template>
+                        </div>
+                      </template>
                     </template>
 
                     <button class="btn btn-outline-success mt-3" @click="save();">Save</button>
@@ -90,6 +92,28 @@
           },
           save() {
             console.log(document.querySelector('[x-data]').__x.getUnobservedData().data);
+            var data = document.querySelector('[x-data]').__x.getUnobservedData().data;
+            var opts = {
+              path: "public/data.json",
+              type: "json",
+              content: data
+            }
+            fetch('/api/github/set-data', {
+                headers: {
+                  authorization: window.token,
+                },
+                body: JSON.stringify(data),
+                method: 'post',
+              })
+              .then(response => response.json())
+              .then(res => {
+                console.log('Success:', res)
+              })
+              .catch(error => {
+                console.error('Error:', error)
+              })
+
+
           }
         }
       }
@@ -99,6 +123,30 @@
 
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.1/dist/alpine.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/gh/maxeckel/alpine-editor@0.3.1/dist/alpine-editor.min.js"></script>
+  <script type="text/javascript" src="https://sdk.userbase.com/2/userbase.js"></script>
+  <script>
+    config = {};
+    config.appId = 'ac1c771e-cae2-4fae-b559-312cd95b5d76';
+    userbase
+      .init({
+        appId: config.appId,
+      })
+      .then(function(session) {
+
+
+        if (typeof session.user !== 'undefined') {
+          console.log('logged in')
+          sessionStorage.setItem('username', session.user.username);
+          window.token = session.user.authToken;
+        } else {
+
+          sessionStorage.removeItem('username');
+        }
+
+
+
+      });
+  </script>
 </body>
 
 </html>

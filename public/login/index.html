@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
-  
-  
+
+
   <style>
     .form-control {
       margin-bottom: 10px;
@@ -44,6 +44,7 @@
   </style>
 
   <script type="text/javascript" src="https://sdk.userbase.com/2/userbase.js"></script>
+
 </head>
 
 <body>
@@ -148,33 +149,8 @@
       </div>
 -->
 
+  <script type="text/javascript" src="ub-init.js"></script>
   <script>
-    config = {};
-    config.appId = 'ac1c771e-cae2-4fae-b559-312cd95b5d76';
-    userbase
-      .init({
-        appId: config.appId,
-      })
-      .then(function(session) {
-
-        document.querySelector('#loading').style.display = 'none';
-
-        if (typeof session.user !== 'undefined') {
-          document.querySelector('#login').style.display = 'none';
-          document.querySelector('#logout').style.display = 'block';
-          sessionStorage.setItem('username', session.user.username);
-          console.log(session.user.authToken);
-        } else {
-          document.querySelector('#logout').style.display = 'none';
-          document.querySelector('#login').style.display = 'block';
-          sessionStorage.removeItem('username');
-        }
-      
-     
-
-      });
-
-
     document.querySelector('#sign-in').addEventListener('click', function() {
       signIn();
     });
