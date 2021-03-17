@@ -22,9 +22,11 @@ const getData = async function(path) {
     result.content = Buffer.from(response.data.content, 'base64').toString();
     result.sha = response.data.sha;
     result.status = response.status;
+    console.log(result);
     return result;
   } catch (e) {
     result.status = "404";
+    console.log('File not found');
     return result;
   }
 
