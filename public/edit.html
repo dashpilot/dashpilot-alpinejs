@@ -14,7 +14,9 @@
 
       <template x-if="data">
 
-<div>
+          <div>
+            
+            hello
             <h1 x-text="data.metadata.title"></h1>
         
         <p x-text="data.content"></p>
@@ -45,7 +47,7 @@
               .then(response => response.json())
               .then(res => {
                 console.log(res)
-                document.querySelector('[x-data]').__x.$data.item = res.msg;
+                this.data = res.msg;
               })
               .catch(error => {
                 console.error('Error:', error)
