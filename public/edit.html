@@ -14,10 +14,12 @@
 
       <template x-if="data">
 
-
+<div>
             <h1 x-text="data.metadata.title"></h1>
         
         <p x-text="data.content"></p>
+  
+        </div>
             
       </template>
       </div>
@@ -33,7 +35,7 @@
             var opts = {
               path: "blog/hello.md",
             }
-            fetch('/api/github/get-data', {
+            fetch('/api/github/get-md', {
                 headers: {
                   'Content-Type': 'application/json'
                 },
