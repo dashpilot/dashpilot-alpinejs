@@ -10,7 +10,7 @@
 
 <body spellCheck="false">
   <main class="container mt-5">
-    <div x-data="item">
+    <div x-data="loadData()">
 
 
             <h1 x-text="item.metadata.title"></h1>
@@ -26,6 +26,24 @@
           show: null,
           get() {
             this.isLoading = true;
+            var opts = {
+              path: "blog/hello.md",
+            }
+            fetch('/api/github/get-data', {
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(opts),
+                method: 'post',
+              })
+              .then(response => response.json())
+              .then(res => {
+                console.log(res)
+                document.querySelector('[x-data]').__x.$data.item = res.msg;
+              })
+              .catch(error => {
+                console.error('Error:', error)
+              })
           
           },
           save() {
@@ -78,25 +96,7 @@
           sessionStorage.setItem('username', session.user.username);
           window.token = session.user.authToken;
           
-            var opts = {
-              path: "posts/blog/hello.md",
-            }
-            fetch('/api/github/get-data', {
-                headers: {
-                  'Authorization': window.token,
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(opts),
-                method: 'post',
-              })
-              .then(response => response.json())
-              .then(res => {
-                console.log(res)
-                document.querySelector('[x-data]').__x.$data.item = res.msg;
-              })
-              .catch(error => {
-                console.error('Error:', error)
-              })
+            
           
           
         } else {
