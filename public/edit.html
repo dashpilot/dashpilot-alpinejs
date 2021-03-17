@@ -79,24 +79,7 @@
           show: null,
           get() {
             this.isLoading = true;
-            var opts = {
-              path: "posts/blog/hello.md",
-            }
-            fetch('/api/github/get-data', {
-                headers: {
-                  'Authorization': window.token,
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(opts),
-                method: 'post',
-              })
-              .then(response => response.json())
-              .then(res => {
-                console.log('Success:', res)
-              })
-              .catch(error => {
-                console.error('Error:', error)
-              })
+          
           },
           save() {
             console.log(document.querySelector('[x-data]').__x.getUnobservedData().data);
@@ -147,6 +130,27 @@
           console.log('logged in')
           sessionStorage.setItem('username', session.user.username);
           window.token = session.user.authToken;
+          
+            var opts = {
+              path: "posts/blog/hello.md",
+            }
+            fetch('/api/github/get-data', {
+                headers: {
+                  'Authorization': window.token,
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(opts),
+                method: 'post',
+              })
+              .then(response => response.json())
+              .then(res => {
+                console.log('Success:', res)
+              })
+              .catch(error => {
+                console.error('Error:', error)
+              })
+          
+          
         } else {
 
           sessionStorage.removeItem('username');
